@@ -34,7 +34,7 @@ class ManagementFeature(Feature):
     Feature containing the extension and bot control commands
     """
 
-    @Feature.Command(parent="jsk", name="load", aliases=["reload"])
+    @Feature.Command(parent="jsk", name="load", aliases=["rl", "rel", "reload"])
     async def jsk_load(self, ctx: ContextA, *extensions: ExtensionConverter):  # type: ignore
         """
         Loads or reloads the given extension names.
@@ -67,14 +67,16 @@ class ManagementFeature(Feature):
                     traceback_data = ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__, 2))
 
                 paginator.add_line(
-                    f"{icon}\N{WARNING SIGN} `{extension}`\n```py\n{traceback_data}\n```",
+                    f"{utils.failure} **Failure to load: {extension}**\n```py\n{traceback_data}\n```",
                     empty=True
                 )
             else:
-                paginator.add_line(f"{icon} `{extension}`", empty=True)
+                paginator.add_line(f"{utils.success} **{extension}**", empty=True)
 
         for page in paginator.pages:
-            await ctx.send(page)
+            await ctx.send(embed=discord.Embed(
+                description = f"{page}",
+                color = 0xb5a3a7))
 
     @Feature.Command(parent="jsk", name="unload")
     async def jsk_unload(self, ctx: ContextA, *extensions: ExtensionConverter):  # type: ignore
