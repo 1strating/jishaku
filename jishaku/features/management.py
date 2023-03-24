@@ -28,6 +28,8 @@ from jishaku.modules import ExtensionConverter
 from jishaku.repl import inspections
 from jishaku.types import ContextA
 
+fail = "<:redwarning:1088270212836638751>"
+succ = "<:Success:1088269688431186032>"
 
 class ManagementFeature(Feature):
     """
@@ -67,11 +69,11 @@ class ManagementFeature(Feature):
                     traceback_data = ''.join(traceback.format_exception(type(exc), exc, exc.__traceback__, 2))
 
                 paginator.add_line(
-                    f"{utils.failure} **Failure to load: {extension}**\n```py\n{traceback_data}\n```",
+                    f"{fail} **Failure to load: {extension}**\n```py\n{traceback_data}\n```",
                     empty=True
                 )
             else:
-                paginator.add_line(f"{utils.success} **{extension}**", empty=True)
+                paginator.add_line(f"{succ} **{extension}**", empty=True)
 
         for page in paginator.pages:
             await ctx.send(embed=discord.Embed(
