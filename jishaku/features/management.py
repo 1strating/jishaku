@@ -78,7 +78,7 @@ class ManagementFeature(Feature):
         for page in paginator.pages:
             await ctx.send(embed=discord.Embed(
                 description = f"{page}",
-                color = 0xb5a3a7))
+                color = 0x4D5992))
 
     @Feature.Command(parent="jsk", name="unload")
     async def jsk_unload(self, ctx: ContextA, *extensions: ExtensionConverter):  # type: ignore
