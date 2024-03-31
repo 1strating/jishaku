@@ -28,8 +28,8 @@ from jishaku.modules import ExtensionConverter
 from jishaku.repl import inspections
 from jishaku.types import ContextA
 
-fail = "<:redwarning:1088270212836638751>"
-succ = "<:Success:1088269688431186032>"
+fail = "<:decline:1222045687995437097>"
+succ = "<:success:1222045655690641439>"
 
 class ManagementFeature(Feature):
     """
